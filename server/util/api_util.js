@@ -74,6 +74,7 @@ export const checkJobStatus = (id, res) => {
   });
 };
 
+// actually grabs the HTML from our target site
 const processRequest = (job, done) => {
   axios.get(job.data)
     .then((response) => {
@@ -82,12 +83,16 @@ const processRequest = (job, done) => {
     });
 };
 
+// watches for any stuck requests
 queue.watchStuckJobs(6000);
 
+// process the queue jobs 20 at a time.
 queue.process('job', 20, (job, done) => {
   processRequest(job, done);
 });
 
+// didn't actually end up using this method but this was my original thought
+// for how to redirect ot the target site's HTML
 // export const RedirecttoUrl = (id, res) => {
 //   let apple = client.hget(id, 'data', (err, reqUrl) => {
 //     if (err) {

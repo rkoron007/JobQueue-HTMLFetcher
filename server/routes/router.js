@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
   res.render('index.html');
 });
 
-
 // route for creating a new job
   router.get('/jobs/:id', (req, res) => {
     let id = req.params['id'];
@@ -24,13 +23,6 @@ router.get('/', (req, res) => {
     createJob(givenUrl, res);
   }
 );
-
-//route to redirect you to requested page
-  router.get('/redirect/:id', ((req, res) => {
-    let id = req.params['id'];
-    RedirecttoUrl(id, res);
-    })
-  );
 
 // route to redirect back to home page
 // just in case you type in something invalid

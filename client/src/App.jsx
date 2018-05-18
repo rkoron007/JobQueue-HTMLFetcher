@@ -18,10 +18,12 @@ class App extends Component {
   }
 
   handleUpdate(input){
+    // handles all input updating with our state
     return (e) => this.setState({[input]: e.target.value});
   }
 
   handleUrl(){
+    //in charge of sending request to create new job
     createJobAndAddQueue({ url: this.state.url }, (job) => {
       this.setState({job: job.message});
     });
@@ -31,6 +33,8 @@ class App extends Component {
   handleJob(){
     getJobStatus(this.state.id, (data) => {
       this.setState({ url: '', id: ''});
+      //if we don't actually have the HTML back yet we set out state
+      // to show whatever message we got back
     if (data['obj']) {
         this.setState({job: data['obj']});
       } else {
