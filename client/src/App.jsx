@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { createJobAndAddQueue,
   getJobStatus } from "./frontend_api_helper";
 import '../stylesheets/App.css';
-import JobShow from "../components/JobShow";
+import JobShow from "./JobShow";
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      url: '',
+      url: 'www.facebook.com',
       id: '',
-      job: null
+      job: null,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleUrl = this.handleUrl.bind(this);
@@ -22,43 +22,43 @@ class App extends Component {
   }
 
   handleUrl(){
-    this.setState({
-      url: '',
-      id: ''
-    });
     createJobAndAddQueue({ url: this.state.url }, (job) => {
-      console.log(job);
-      // this.setState({ jobs: this.state.jobs.concat([job]),
-      //         message: `JOB-ID ${job.jobId} was added to queue`
-      //       })
-      //     })
-      //   }
-        // else {
-        //   // this.setState({ message: {} });
-        // }
+      this.setState({job: job.message});
+    });
+    this.setState({
+      id: ''
     });
   }
 
   handleJob(){
-    getJobStatus(this.state.id, (job) => {
-      this.setState({
-        url: '',
-        id: ''
-      });
-      console.log(job);
+    getJobStatus(this.state.id, (data) => {
+      this.setState({ url: '', id: ''});
+    if (data['obj']) {
+        this.setState({job: data['obj'], url:'www.facebook.com'});
+      } else {
+        this.setState({job: data['message'], url:'www.facebook.com'});
+      }
     });
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Input Url</h1>
-        <input onChange={this.handleUpdate("url")} value={this.state.url}></input>
-        <button onClick={this.handleUrl}>Create Job</button>
-          <h4>or</h4>
-        <h1>Check on a Job</h1>
-        <input onChange={this.handleUpdate("id")}value={this.state.id}></input>
-        <button onClick= {this.handleJob}>Find Job</button>
+        <h1 className="input-info">Input Url</h1>
+          <input placeholder="www.facebook.com" className="url-input"
+            onChange={this.handleUpdate("url")}
+            value={this.state.url}>
+          </input>
+
+        <button className="request-button"
+          onClick={this.handleUrl}>Create Job
+        </button>
+
+        <h2>or</h2>
+        <h1 className="input-info">Check on a Job</h1>
+        <input className="url-input" onChange={this.handleUpdate("id")}value={this.state.id}>
+        </input>
+        <button onClick={this.handleJob} className="request-button">Find Job</button>
         <JobShow job={this.state.job}/>
       </div>
     );

@@ -1,28 +1,34 @@
 .App {
   text-align: center;
+  font-family: "Graphik Webfont", -apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.input-info{
+  font-size: 30px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.url-input{
+  line-height: 16px;
+  color: #333;
+  font-size: 14px;
+  padding: 9px 7px 7px;
+  border-left: 1px solid #E1E4DF;
+  border-bottom: 1px solid #E1E4DF;
+  border-top: 1px solid #E1E4DF;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.request-button{
+  line-height: 16px;
+  font-size: 14px;
+  border: 1px solid #FFAA00;
+  padding: 8px;
+  line-height: 15px;
+  margin-top: 13px;
+  border-radius: 3px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.request-button:hover{
+  background-color: #fce0a9;
 }

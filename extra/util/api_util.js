@@ -79,11 +79,11 @@ var checkJobStatus = exports.checkJobStatus = function checkJobStatus(id, res) {
     if (err) {
       res.send(err);
     } else if (!obj) {
-      res.send("This key does not exist! Check your spelling or try a new key");
+      res.send({ message: "This key does not exist! Check your spelling or try a new key" });
     } else if (obj === 'none') {
-      res.send("Working on it! Check back in a minute or two.");
+      res.send({ message: "Working on it! Check back in a minute or two." });
     } else {
-      res.send(obj);
+      res.send({ obj: obj });
     }
   });
 };
@@ -96,7 +96,7 @@ var RedirecttoUrl = exports.RedirecttoUrl = function RedirecttoUrl(id, res) {
       if (reqUrl === 'none') {
         res.status(400);
       } else {
-        res.send(reqUrl);
+        res.send({ obj: reqUrl });
       }
     }
   });

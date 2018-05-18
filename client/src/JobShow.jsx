@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "../stylesheets/JobShow.css";
 
 class JobShow extends Component {
 
@@ -7,11 +7,12 @@ class JobShow extends Component {
     if (!this.props.job){
       return null;
     }
-    // {this.props.job.completed ? 'View the HTML' : 'Still Working On It' }
 
     return (
       <div className="job-status">
-        {this.props.job}
+        <section>
+            <div className="job-box" dangerouslySetInnerHTML={{ __html: this.props.job}}></div>
+        </section>
       </div>
     );
   }

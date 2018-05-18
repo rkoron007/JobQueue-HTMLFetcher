@@ -40,10 +40,9 @@ export const createJob = (givenUrl, res) => {
         res.send({
           url: 'The URL you submitted was: ' + givenUrl,
           message: 'Successfully created job. Your job ID is ' + job.id,
-          completed: false});
+          });
       } else {
         res.send({
-          completed: false,
           message: "Sorry! We could not import your data. Please check your spelling and try again.",
           error: err}
         );
@@ -51,7 +50,6 @@ export const createJob = (givenUrl, res) => {
     });
   } else {
     res.send({
-      success: false,
       message: "Sorry! That's not a valid url. Please check your spelling and try again.",
       }
     );
@@ -60,33 +58,15 @@ export const createJob = (givenUrl, res) => {
 };
 
 export const checkJobStatus = (id, res) => {
-  client.hget(id, 'data', function(err, obj) {
+  client.hget(id, 'data', (err, obj) => {
     if (err) {
       res.send(err);
-    }
-    else if (!obj){
+    } else if (!obj){
       res.send({message:"This key does not exist! Check your spelling or try a new key"});
-    }
-    else if (obj === 'none'){
+    } else if (obj === 'none'){
       res.send({message:"Working on it! Check back in a minute or two."});
-    }
-    else{
-      res.send({obj:obj});
-    }
-  });
-};
-
-
-export const RedirecttoUrl = (id, res) => {
-  let apple = client.hget(id, 'data', (err, reqUrl) => {
-    if (err) {
-      res.status(400);
     } else {
-      if (reqUrl === 'none') {
-        res.status(400);
-      } else {
-        res.send({obj:reqUrl});
-      }
+      res.send({obj:obj});
     }
   });
 };
@@ -104,3 +84,17 @@ queue.watchStuckJobs(6000);
 queue.process('job', 20, (job, done) => {
   processRequest(job, done);
 });
+
+// export const RedirecttoUrl = (id, res) => {
+//   let apple = client.hget(id, 'data', (err, reqUrl) => {
+//     if (err) {
+//       res.status(400);
+//     } else {
+//       if (reqUrl === 'none') {
+//         res.status(400);
+//       } else {
+//         res.send({obj:reqUrl});
+//       }
+//     }
+//   });
+// };
