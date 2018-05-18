@@ -7,7 +7,7 @@ This project creates an RESTful API using Node's Kue and Redis to create a job q
 - Backend: Express, Node, and Redis.
 
 ### To Run:
-- `npm build` => precompiles needed assests
+- `npm build` => precompiles needed assets
 
 #### Use 2 Seperate Terminal Windows for these Commands:
 - `npm dev` => uses webpack to bundle all files and transpile ES6

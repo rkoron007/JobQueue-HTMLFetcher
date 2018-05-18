@@ -6,6 +6,7 @@ import validator from 'validator';
 const client = redis.createClient();
 const queue = kue.createQueue();
 
+// just to test connections
 client.on('connect', () => {
   console.log('connected to Redis');
 });
@@ -18,7 +19,9 @@ queue.on('error', (err) => {
   console.log( 'Kue Error: ', err );
 });
 
+// make sure url is valid
 const checkUrl = (url) => {
+  console.log('whattttt');
   if (validator.isURL(url)){
     return "http://" + url;
  } else {
@@ -27,7 +30,9 @@ const checkUrl = (url) => {
 };
 
 
+// add the job to our queue
 export const createJob = (givenUrl, res) => {
+  console.log(givenUrl);
   let data = checkUrl(givenUrl);
   if (data){
     let job = queue.create('job', data)
@@ -35,10 +40,10 @@ export const createJob = (givenUrl, res) => {
       .removeOnComplete(false)
       .save( (err) => {
       if (!err){
+        // if we saved safely we set the job and set our
+        // current data as 'none' so we know there isn't valid html there yet
         client.hset(job.id, data, 'none', redis.print);
-        console.log(client.hget(job.id, 'data', (error, obj) => obj));
         res.send({
-          url: 'The URL you submitted was: ' + givenUrl,
           message: 'Successfully created job. Your job ID is ' + job.id,
           });
       } else {

@@ -8,7 +8,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      url: 'www.facebook.com',
+      url: '',
       id: '',
       job: null,
     };
@@ -22,21 +22,22 @@ class App extends Component {
   }
 
   handleUrl(){
+    if (this.state.url === ''){
+      this.state.url = 'www.google.com';
+    }
     createJobAndAddQueue({ url: this.state.url }, (job) => {
       this.setState({job: job.message});
     });
-    this.setState({
-      id: ''
-    });
+    this.setState({url: ''});
   }
 
   handleJob(){
     getJobStatus(this.state.id, (data) => {
       this.setState({ url: '', id: ''});
     if (data['obj']) {
-        this.setState({job: data['obj'], url:'www.facebook.com'});
+        this.setState({job: data['obj']});
       } else {
-        this.setState({job: data['message'], url:'www.facebook.com'});
+        this.setState({job: data['message']});
       }
     });
   }
@@ -51,14 +52,14 @@ class App extends Component {
           </input>
 
         <button className="request-button"
-          onClick={this.handleUrl}>Create Job
+          onClick={() => this.handleUrl()}>Create Job
         </button>
 
         <h2>or</h2>
         <h1 className="input-info">Check on a Job</h1>
         <input className="url-input" onChange={this.handleUpdate("id")}value={this.state.id}>
         </input>
-        <button onClick={this.handleJob} className="request-button">Find Job</button>
+        <button onClick={() => this.handleJob()} className="request-button">Find Job</button>
         <JobShow job={this.state.job}/>
       </div>
     );
