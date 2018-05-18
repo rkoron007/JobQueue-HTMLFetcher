@@ -5,14 +5,11 @@ import { createJob, checkJobStatus, RedirecttoUrl } from "../util/api_util";
 import path from 'path';
 
 require('events').EventEmitter.prototype._maxListeners = 30;
-// connects to our react frontend
 
-
+// connects to our react frontend through the html page.
 router.get('/', (req, res) => {
   res.render('index.html');
 });
-// res.render('../../client/index.html');
-// app.use(express.static(__dirname + 'client/index.html'));
 
 
 // route for creating a new job

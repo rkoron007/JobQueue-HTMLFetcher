@@ -7,10 +7,10 @@ class JobShow extends Component {
     if (!this.props.job){
       return null;
     }
-
+    //
     return (
       <div className="job-status">
-        <section>
+        <section className="job-section">
             <div className="job-box" dangerouslySetInnerHTML={{ __html: this.props.job}}></div>
         </section>
       </div>

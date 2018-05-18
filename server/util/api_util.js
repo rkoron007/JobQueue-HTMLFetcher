@@ -21,7 +21,6 @@ queue.on('error', (err) => {
 
 // make sure url is valid
 const checkUrl = (url) => {
-  console.log('whattttt');
   if (validator.isURL(url)){
     return "http://" + url;
  } else {
@@ -32,7 +31,6 @@ const checkUrl = (url) => {
 
 // add the job to our queue
 export const createJob = (givenUrl, res) => {
-  console.log(givenUrl);
   let data = checkUrl(givenUrl);
   if (data){
     let job = queue.create('job', data)
@@ -44,7 +42,7 @@ export const createJob = (givenUrl, res) => {
         // current data as 'none' so we know there isn't valid html there yet
         client.hset(job.id, data, 'none', redis.print);
         res.send({
-          message: 'Successfully created job. Your job ID is ' + job.id,
+          message: `Successfully created job. Your Job ID is ${job.id}.`  ,
           });
       } else {
         res.send({

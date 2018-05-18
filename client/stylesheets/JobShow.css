@@ -1,3 +1,20 @@
 .job-status{
-  margin-top: 5%;
+  overflow: hidden;
+  width: 90%;
+  left: 5%;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 20px #999;
+}
+
+.job-box{
+  text-align: center;
+  padding: 15px;
+  font-size: 24px;
+}
+
+.job-section{
+  border: 1px solid #E1E4DF;
+  min-height: 100px;
 }

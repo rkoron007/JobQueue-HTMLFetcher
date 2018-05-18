@@ -2,7 +2,12 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 export const createJobAndAddQueue = (data, callback) => {
-  let url = (data['url']);
+  let url;
+  if (data['url']){
+    url = (data['url']);
+  } else {
+    url = "www.facebook.com";
+  }
   fetch(`/jobs/${url}`, {
     method: 'POST',
     headers: {
@@ -22,6 +27,9 @@ export const createJobAndAddQueue = (data, callback) => {
 };
 
 export const getJobStatus = (id, callback) => {
+  if (!id){
+    id = 1;
+  }
   fetch(`/jobs/${id}`, {
       method: 'GET',
       headers: {

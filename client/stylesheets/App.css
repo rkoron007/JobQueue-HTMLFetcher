@@ -10,6 +10,7 @@
 .url-input{
   line-height: 16px;
   color: #333;
+  margin-left: 4px;
   font-size: 14px;
   padding: 9px 7px 7px;
   border-left: 1px solid #E1E4DF;
@@ -22,7 +23,8 @@
 .request-button{
   line-height: 16px;
   font-size: 14px;
-  border: 1px solid #FFAA00;
+  background-color: #07c9ff;
+  border: 1px solid #45AED1;
   padding: 8px;
   line-height: 15px;
   margin-top: 13px;
@@ -30,5 +32,5 @@
 }
 
 .request-button:hover{
-  background-color: #fce0a9;
+  background-color: #45AED1;
 }
