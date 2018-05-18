@@ -23,7 +23,7 @@ class App extends Component {
 
   handleUrl(){
     if (this.state.url === ''){
-      this.state.url = 'www.google.com';
+      this.state.url = 'www.facebook.com';
     }
     createJobAndAddQueue({ url: this.state.url }, (job) => {
       this.setState({job: job.message});
