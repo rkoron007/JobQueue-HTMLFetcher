@@ -2,14 +2,18 @@ import express from 'express';
 const router = express.Router();
 import { createJob, checkJobStatus, RedirecttoUrl } from "../util/api_util";
 
+import path from 'path';
+
 require('events').EventEmitter.prototype._maxListeners = 30;
-
 // connects to our react frontend
-router.get('/', (req, res) => {
-});
 
-// res.send('Why hello there');
-// res.render('../../client/public/index.html');
+
+router.get('/', (req, res) => {
+  res.render('index.html');
+});
+// res.render('../../client/index.html');
+// app.use(express.static(__dirname + 'client/index.html'));
+
 
 // route for creating a new job
   router.get('/jobs/:id', (req, res) => {
@@ -19,7 +23,6 @@ router.get('/', (req, res) => {
 
 //route to create a job with the given url
   router.post('/jobs/:url', (req, res) => {
-    console.log(req);
     let givenUrl = req.params['url'];
     createJob(givenUrl, res);
   }

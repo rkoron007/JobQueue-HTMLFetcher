@@ -1,15 +1,11 @@
 const express = require('express');
 const app = express();
-
-import bodyParser from 'body-parser';
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+import path from 'path';
 
 import routes from './routes/router';
 
-const port = 3001 || process.env.PORT;
-
+app.use(express.static(path.resolve(__dirname + '../../client')));
 app.use('/', routes);
+const port = 3000 || process.env.PORT;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
