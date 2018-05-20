@@ -19,4 +19,4 @@ This project creates an RESTful API using Node's Kue and Redis to create a job q
 
 
 ### How To Use:
-Enter a valid url (don't forget the "www") and then that url will be stored in the job queue and you will be given a job queue id number. The HTML of the website you submitted will be collected once it reaches the top of the queue. To retrieve the HTML or check on your job status you can enter the job id you were given.
+Enter a valid url (don't forget the "www") and then that url will be stored in the job queue and you will be given a job queue id number. The HTML of the website you submitted will be collected once it reaches the top of the queue. To check on your job status or retrieve the resulting HTML you can enter the job queue id you were given.
