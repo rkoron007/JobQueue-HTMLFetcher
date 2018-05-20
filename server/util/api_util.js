@@ -92,7 +92,8 @@ queue.process('job', 20, (job, done) => {
 });
 
 // didn't actually end up using this method but this was my original thought
-// for how to redirect ot the target site's HTML
+// for how to redirect to the target site's HTML
+
 // export const RedirecttoUrl = (id, res) => {
 //   let apple = client.hget(id, 'data', (err, reqUrl) => {
 //     if (err) {
