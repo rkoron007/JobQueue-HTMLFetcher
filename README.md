@@ -2,6 +2,7 @@
 ## Overview
 This project creates an RESTful API using Node's Kue and Redis to create a job queue for retrieving HTML.
 
+![Demo Gif](https://media.giphy.com/media/fs6cnXON31uWoCjim8/giphy.gif)
 ### Built Using:
 - Frontend: React
 - Backend: Express, Node, and Redis.
