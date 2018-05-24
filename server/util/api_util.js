@@ -40,7 +40,7 @@ export const createJob = (givenUrl, res) => {
       if (!err){
         // if we saved safely we set the job and set our
         // current data as 'none' so we know there isn't valid html there yet
-        client.hset(job.id, data, 'none', redis.print);
+        client.hset(job.id, data, 'none');
         res.send({
           message: `Successfully created job. Your Job ID is ${job.id}.`  ,
           });
@@ -69,7 +69,7 @@ export const checkJobStatus = (id, res) => {
     } else if (obj === 'none'){
       res.send({message:"Working on it! Check back in a minute or two."});
     } else {
-      res.send({obj:obj});
+      res.send({obj});
     }
   });
 };
@@ -78,7 +78,7 @@ export const checkJobStatus = (id, res) => {
 const processRequest = (job, done) => {
   axios.get(job.data)
     .then((response) => {
-      client.hset(job.id, 'data', response.data, redis.print);
+      client.hset(job.id, 'data', response.data);
       done();
     });
 };

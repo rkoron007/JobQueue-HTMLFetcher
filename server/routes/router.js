@@ -4,7 +4,6 @@ import { createJob, checkJobStatus, RedirecttoUrl } from "../util/api_util";
 
 import path from 'path';
 
-require('events').EventEmitter.prototype._maxListeners = 30;
 
 // connects to our react frontend through the html page.
 router.get('/', (req, res) => {

@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 import path from 'path';
-
 import routes from './routes/router';
+
+require('events').EventEmitter.defaultMaxListeners = 30;
+
+
 // for routing our index.html
 app.use(express.static(path.resolve(__dirname + '../../client')));
 
